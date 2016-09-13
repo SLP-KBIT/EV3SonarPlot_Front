@@ -1,5 +1,4 @@
 package project.device;
-
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3TouchSensor;
@@ -8,15 +7,13 @@ import lejos.hardware.sensor.SensorMode;
 public class TouchSensor {
 	private static TouchSensor touchSensor = new TouchSensor();
 
-    private Port  SENSORPORT_TOUCH     = SensorPort.S1;  // タッチセンサーポート
-
     // タッチセンサ
-    private EV3TouchSensor touch;
-    private SensorMode touchMode;
-    private float[] sampleTouch;
+    static EV3TouchSensor touch;
+    static SensorMode touchMode;
+    static float[] sampleTouch;
+    final Port  SENSORPORT_TOUCH     = SensorPort.S1;  // タッチセンサーポート
 
     private TouchSensor() {
-        // タッチセンサー
         touch = new EV3TouchSensor(SENSORPORT_TOUCH);
         touchMode = touch.getTouchMode();
         sampleTouch = new float[touchMode.sampleSize()];

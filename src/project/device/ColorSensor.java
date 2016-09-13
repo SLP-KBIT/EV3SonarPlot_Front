@@ -7,12 +7,11 @@ import lejos.hardware.sensor.SensorMode;
 public class ColorSensor {
 	private static ColorSensor colorSensor = new ColorSensor();
 
-    private Port  SENSORPORT_COLOR     = SensorPort.S3;  // カラーセンサーポート
-
     // カラーセンサー
     static EV3ColorSensor color;
     static SensorMode redMode;           // 輝度検出モード
     static float[] sampleLight;
+    final Port  SENSORPORT_COLOR     = SensorPort.S3;  // カラーセンサーポート
 
     private ColorSensor() {
         color = new EV3ColorSensor(SENSORPORT_COLOR);

@@ -1,5 +1,7 @@
 package project.task;
 
+import lejos.hardware.lcd.LCD;
+
 public class DriveTask implements Runnable {
 
     /**
@@ -7,6 +9,6 @@ public class DriveTask implements Runnable {
      */
     @Override
     public void run() {
-
+    	LCD.drawString("aaa", 0, 0);
     }
 }
