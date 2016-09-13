@@ -1,4 +1,4 @@
-package main;
+package project;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -6,7 +6,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import lejos.hardware.lcd.LCD;
-import task.DriveTask;
+import project.task.DriveTask;
 
 public class Main {
 
