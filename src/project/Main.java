@@ -5,6 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
+import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
 import project.device.ColorSensor;
@@ -102,8 +103,8 @@ public class Main {
 		Main main = new Main();
 
         // スタート待ち
-        LCD.drawString("Touch to START", 0, 4);
-        while (main.waitForStart()) {
+        LCD.drawString("Push to START", 0, 4);
+        while (Button.ENTER.isUp()) {
             Delay.msDelay(100);
         }
 
