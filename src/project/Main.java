@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
-import project.device.ColorSensor;
-import project.device.TouchSensor;
 import project.task.DriveTask;
 
 public class Main {
@@ -21,10 +19,8 @@ public class Main {
     // タスク
     private DriveTask  driveTask;
 
-    // デバイス
-    TouchSensor touch;
-    private boolean        touchPressed;    // タッチセンサーが押されたかの状態
-    ColorSensor color;
+    // フラグ
+    private boolean buttonPressed;    // タッチセンサーが押されたかの状態
 
     /**
      * コンストラクタ。
@@ -33,8 +29,6 @@ public class Main {
     public Main() {
     	scheduler  = Executors.newScheduledThreadPool(1);
     	driveTask  = new DriveTask();
-    	touchPressed = false;
-    	touch = TouchSensor.getInstance();
     }
 
     /**
@@ -44,15 +38,14 @@ public class Main {
      */
     public boolean waitForStart() {
         boolean res = true;
-        if (touch.touchSensorIsPressed()) {
-            touchPressed = true;          // タッチセンサーが押された
+        if (Button.ENTER.isDown()) {
+        	buttonPressed = true;          // ボタンが押された
         } else {
-            if (touchPressed) {
+            if (buttonPressed) {
                 res = false;
-                touchPressed = false;     // タッチセンサーが押された後に放した
+                buttonPressed = false;     // ボタンが押された後に放した
             }
-        }
-        return res;
+        }        return res;
     }
 
     /**
@@ -60,12 +53,12 @@ public class Main {
      */
     public boolean waitForStop() {
     	boolean res = true;
-        if (touch.touchSensorIsPressed()) {
-            touchPressed = true;          // タッチセンサーが押された
+        if (Button.ENTER.isDown()) {
+        	buttonPressed = true;          // ボタンが押された
         } else {
-            if (touchPressed) {
+            if (buttonPressed) {
                 res = false;
-                touchPressed = false;     // タッチセンサーが押された後に放した
+                buttonPressed = false;     // ボタンが押された後に放した
             }
         }
         return res;
@@ -104,7 +97,7 @@ public class Main {
 
         // スタート待ち
         LCD.drawString("Push to START", 0, 4);
-        while (Button.ENTER.isUp()) {
+        while (main.waitForStart()) {
             Delay.msDelay(100);
         }
 
