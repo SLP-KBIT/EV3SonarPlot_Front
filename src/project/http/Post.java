@@ -55,6 +55,7 @@ public class Post {
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			LCD.drawString("Post Error", 0, 5);
 		}
     }
 }

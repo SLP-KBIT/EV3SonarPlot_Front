@@ -1,5 +1,4 @@
 package project.device;
-
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
@@ -8,12 +7,11 @@ import lejos.robotics.SampleProvider;
 public class SonarSensor {
 	private static SonarSensor sonarSensor = new SonarSensor();
 
-    private static final Port  SENSORPORT_SONAR     = SensorPort.S4;  // 超音波センサーポート
-
     // 超音波センサ
     static EV3UltrasonicSensor sonar;
     static SampleProvider distanceMode;  // 距離検出モード
     static float[] sampleDistance;
+    final Port  SENSORPORT_SONAR     = SensorPort.S4;  // 超音波センサーポート
 
     private SonarSensor() {
         sonar = new EV3UltrasonicSensor(SENSORPORT_SONAR);
