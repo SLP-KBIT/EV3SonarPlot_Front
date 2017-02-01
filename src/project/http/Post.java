@@ -43,7 +43,6 @@ public class Post {
 			String line;
 			while((line=br1.readLine()) != null)
 			{
-				//改行がカットされてるので、printlnになる。
 				LCD.drawString(line, 0, 3);
 			}
 
